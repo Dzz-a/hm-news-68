@@ -2,7 +2,7 @@
 <div>
    <hm-header><slot>登录</slot></hm-header>
    <hm-logo></hm-logo>
-   <van-form @submit="onSubmit">
+   <van-form @submit="login">
   <van-field
     v-model="username"
     name="用户名"
@@ -30,8 +30,22 @@
 </template>
 
 <script>
-
+import axios from 'axios'
 export default {
+  methods: {
+    async login () {
+      const res = await axios.post('http://192.168.144.21/:3000/login', {
+        username: this.username,
+        password: this.password
+      })
+      const { statusCode, message } = res.data
+      if (statusCode === 200) {
+        this.$toast.success(message)
+      } else {
+        this.$$toast.fail(message)
+      }
+    }
+  },
   data () {
     return {
       username: '',
@@ -45,7 +59,7 @@ export default {
         ],
         password: [
           { required: true, message: '请填写密码', trigger: 'onChange' },
-          { pattern: /^\d{3,9}/, message: '密码长度是3-9位数字', trigger: 'onChange' }
+          { pattern: /^\d{3,9}$/, message: '密码长度是3-9位数字', trigger: 'onChange' }
         ]
       }
     }
