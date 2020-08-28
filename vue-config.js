@@ -1,5 +1,5 @@
-module.exports={
-    devServe:{
-        open:true
-    }
+module.exports = {
+  devServe: {
+    open: true
+  }
 }
