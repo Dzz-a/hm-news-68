@@ -20,8 +20,9 @@
   />
   <div style="margin: 16px;">
     <van-button round block type="info" native-type="submit">
-      提交
+      登录
     </van-button>
+    <p class="tips">没有账号？去<router-link to="/register">注册</router-link></p>
   </div>
 </van-form>
 
@@ -30,11 +31,11 @@
 </template>
 
 <script>
-import axios from 'axios'
+
 export default {
   methods: {
     async login () {
-      const res = await axios.post('http://192.168.144.21/:3000/login', {
+      const res = await this.$axios.post('/login', {
         username: this.username,
         password: this.password
       })
@@ -69,9 +70,9 @@ export default {
 </script>
 
 <style lang="less">
-.box {
-  width: 150px;
-  height: 150px;
-  background-color: #445554;
+.tips{
+  padding: 15px;
+  font-size: 16px;
+  text-align: center;
 }
 </style>

@@ -17,6 +17,11 @@ import HmHeader from './components/HmHeader.vue'
 // 引入hm-logo 组件
 import HmLogo from './components/HmLogo.vue'
 
+// 引入axios，并且挂载到vue的原型上
+import axios from 'axios'
+Vue.prototype.$axios = axios
+// 给axios配置默认的baseURL,基准地址
+axios.defaults.baseURL = 'http://192.168.144.21/:3000'
 // 全局注册组件
 Vue.component('hm-header', HmHeader)
 Vue.component('hm-logo', HmLogo)
