@@ -15,7 +15,7 @@
     type="password"
     name="密码"
     label="密码"
-    placeholder="密码"
+    placeholder="请输入密码"
     :rules="rules.password"
   />
   <div style="margin: 16px;">
@@ -33,6 +33,15 @@
 <script>
 
 export default {
+  created () {
+    // 在初始化后，获取到注册页面传过来的数据 通过query传过来的
+    // const { username, password } = this.$route.query
+    // 通过params传过来的
+    const { username, password } = this.$route.params
+    // 把传过来的数据给到当前页面的用户名，密码
+    this.username = username
+    this.password = password
+  },
   methods: {
     async login () {
       const res = await this.$axios.post('/login', {
@@ -42,8 +51,9 @@ export default {
       const { statusCode, message } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
+        this.$toast.push('/user')
       } else {
-        this.$$toast.fail(message)
+        this.$toast.fail(message)
       }
     }
   },
@@ -69,10 +79,11 @@ export default {
 
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .tips{
   padding: 15px;
   font-size: 16px;
   text-align: center;
 }
+
 </style>
