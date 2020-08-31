@@ -48,10 +48,14 @@ export default {
         username: this.username,
         password: this.password
       })
-      const { statusCode, message } = res.data
+      const { statusCode, message, data } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
-        this.$toast.push('/user')
+        // 在登录成功的时候，把token保存
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('userId', data.user.id)
+        this.$router.push('./user')
+        // console.log(this.$router.push('/user'))
       } else {
         this.$toast.fail(message)
       }
