@@ -16,6 +16,8 @@ export default {
       if (this.to) {
         this.$router.push(this.to)
       }
+      // 给组件注册点击事件的时候
+      this.$emit('click')
     }
   },
   // 接收父组件传过来的

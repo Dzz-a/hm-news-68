@@ -4,13 +4,15 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import User from '../views/User.vue'
+import UserEdit from '../views/UserEdit.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   { path: '/login', component: Login, name: 'login' },
   { path: '/register', component: Register, name: 'register' },
-  { path: '/user', component: User, name: 'user' }
+  { path: '/user', component: User, name: 'user' },
+  { path: '/user-edit', component: UserEdit, name: 'user-edit' }
 ]
 
 const router = new VueRouter({
@@ -31,7 +33,9 @@ router.beforeEach(function (to, from, next) {
   //   next()
   // }
   const token = localStorage.getItem('token')
-  if (to.name !== 'user' || token) {
+  const authUrls = ['/user', '/user-edit']
+  // 如果要去的页面不是authUrls里的页面或者有token，就直接去，是那里的页面或者没有token的话就去登录页
+  if (!authUrls.includes(to.path) || token) {
     next()
   } else {
     router.push('/login')
@@ -40,7 +44,7 @@ router.beforeEach(function (to, from, next) {
 // （解决重复跳转到当前路由的异常）
 // 方案一
 // router.push('/login').catch(err => err)
-// 方案二 // 全局的把push的异常处理
+// 方案二 // 全局的把push的异常处理（解决重复跳转到当前路由的异常）
 const originalPush = VueRouter.prototype.push
 VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
