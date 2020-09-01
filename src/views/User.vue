@@ -3,7 +3,7 @@
     <div class="header">
       <div class="avatar">
         <!-- 图片的路径要绝对路径 -->
-        <img :src="base + user.head_img" alt="">
+        <img :src="base + user.head_img" @click="$router.push('/user-edit')">
       </div>
       <div class="info">
         <div class="name">
@@ -28,7 +28,7 @@
     <hm-navitem>我的收藏
       <template #content>文章/视屏</template>
     </hm-navitem>
-    <hm-navitem to="/edit">设置</hm-navitem>
+    <hm-navitem to="/user-edit">设置</hm-navitem>
     <div style="margin:15px">
       <van-button type="primary" block @click="logout">退出登录</van-button>
     </div>

@@ -248,8 +248,6 @@ export default {
   .crop{
   right: 0;
   }
-  // /deep/.vue-cropper{
-  //   background-color: black;
-  // }
+
 }
 </style>
