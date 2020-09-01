@@ -28,7 +28,7 @@
     <hm-navitem>我的收藏
       <template #content>文章/视屏</template>
     </hm-navitem>
-    <hm-navitem to="/eidt">设置</hm-navitem>
+    <hm-navitem to="/edit">设置</hm-navitem>
     <div style="margin:15px">
       <van-button type="primary" block @click="logout">退出登录</van-button>
     </div>
