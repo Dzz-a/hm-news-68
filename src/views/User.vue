@@ -19,10 +19,10 @@
       </div>
     </div>
     <!-- 导航条 -->
-    <hm-navitem to="/follow">我的关注
+    <hm-navitem to="/my-follow">我的关注
       <template #content>关注的用户</template>
     </hm-navitem>
-    <hm-navitem>我的跟帖
+    <hm-navitem to="/my-comment">我的跟帖
       <template #content>跟帖/回复</template>
     </hm-navitem>
     <hm-navitem>我的收藏
