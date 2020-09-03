@@ -83,7 +83,7 @@ export default {
         // 刷新的时候列表清空原来的数据
         this.commentList = []
         // 防止之前已经没有数据了
-        // loading此时要给true，不然会出现同时加载多条数据，因为下拉的时候，会清空数据，页面到底了，会加载一次数据，下拉又会触发一次请求，执行getCommentList()
+        // loading此时要给true，不然会出现同时加载多条数据，因为下拉的时候，会清空数据，页面到底了，触发onLoad会加载一次数据，下拉又会触发一次请求，执行getCommentList()，又加载一次，防止加载两次，就手动改成true，让他们只加载一次数据
         // 清空触发一次，下拉触发一次，所以在此时都是正在加载，
         this.loading = true
         this.finished = false

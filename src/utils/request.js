@@ -36,3 +36,13 @@ axios.interceptors.response.use(function (response) {
   }
   return response
 })
+
+// 处理图片路径的函数
+Vue.prototype.$url = function (url) {
+  if (url.startsWith('http')) {
+    // 网络图片
+    return url
+  } else {
+    return URL + url
+  }
+}
