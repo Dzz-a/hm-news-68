@@ -14,6 +14,10 @@ import './utils/request'
 import './utils/filters'
 // 全局导入vant
 import './utils/vant'
+// 创建bus
+const bus = new Vue()
+// 把bus挂载到vue的原型上
+Vue.prototype.$bus = bus
 
 Vue.config.productionTip = false
 new Vue({

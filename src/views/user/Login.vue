@@ -54,7 +54,13 @@ export default {
         // 在登录成功的时候，把token保存
         localStorage.setItem('token', data.token)
         localStorage.setItem('userId', data.user.id)
-        this.$router.push('./user')
+        if (this.$route.query.back) {
+          // 判断路由有没有携带back的数据，有的话就回退跳转
+          this.$router.back()
+        } else {
+          // 没有就跳转到user界面
+          this.$router.push('./user')
+        }
         // console.log(this.$router.push('/user'))
       } else {
         this.$toast.fail(message)
